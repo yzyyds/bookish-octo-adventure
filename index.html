@@ -2,644 +2,851 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>情侣搞怪大作战</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>图片清晰化 - 移动端图片增强</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #ffd6e7 0%, #c2f0ff 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333;
+            line-height: 1.6;
             min-height: 100vh;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 100%;
+            width: 95%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 15px;
         }
         
         header {
             text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(to right, #ff6b9d, #6a5af9);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px 0 15px;
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
             color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .couple-emoji {
-            font-size: 2.5rem;
-            margin: 0 10px;
-        }
-        
-        .heart {
-            color: #ff4757;
-            animation: heartbeat 1.5s infinite;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            width: 280px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #ff6b9d, #6a5af9);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #ff6b9d;
-        }
-        
-        .feature-card p {
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(to right, #ff6b9d, #6a5af9);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .game-section {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        
-        .game-section h2 {
-            text-align: center;
-            color: #ff6b9d;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin-bottom: 25px;
-            font-size: 2rem;
         }
         
-        .game-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        
-        .game {
-            background: #f9f9ff;
-            border-radius: 15px;
-            padding: 25px;
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            border: 2px dashed #ff6b9d;
-        }
-        
-        .game h3 {
-            color: #6a5af9;
-            margin-bottom: 15px;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
         }
         
-        .game h3 i {
-            color: #ff6b9d;
+        .logo i {
+            color: #6dd5ed;
         }
         
-        .game input, .game textarea, .game select {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+        .subtitle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto;
         }
         
-        .game input:focus, .game textarea:focus, .game select:focus {
-            border-color: #ff6b9d;
-            outline: none;
+        .upload-area {
+            background: white;
+            border-radius: 16px;
+            padding: 25px 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
         }
         
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f0f8ff;
-            border-radius: 10px;
-            border-left: 5px solid #6a5af9;
+        .upload-area:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .upload-icon {
+            font-size: 3.5rem;
+            color: #4b6cb7;
+            margin-bottom: 15px;
+        }
+        
+        .upload-text {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .upload-subtext {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .file-input {
             display: none;
         }
         
-        .result.show {
-            display: block;
-            animation: fadeIn 0.5s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .love-meter {
-            width: 100%;
-            height: 30px;
-            background: #eee;
-            border-radius: 15px;
-            margin: 20px 0;
-            overflow: hidden;
-        }
-        
-        .love-fill {
-            height: 100%;
-            background: linear-gradient(to right, #ff6b9d, #6a5af9);
-            border-radius: 15px;
-            width: 0%;
-            transition: width 1s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-        
-        .photo-frame {
-            width: 200px;
-            height: 200px;
-            margin: 20px auto;
-            border: 10px solid #ff6b9d;
-            border-radius: 10px;
-            background: #f9f9f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .photo-frame img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        
-        .filter-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .filter-btn {
-            padding: 8px 15px;
-            background: #6a5af9;
+        .upload-btn {
+            background: linear-gradient(to right, #4b6cb7, #3a56a4);
             color: white;
             border: none;
-            border-radius: 20px;
+            padding: 14px 28px;
+            font-size: 1rem;
+            border-radius: 50px;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(75, 108, 183, 0.3);
         }
         
-        .filter-btn:hover {
-            background: #ff6b9d;
+        .upload-btn:hover {
+            background: linear-gradient(to right, #3a56a4, #2d4485);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(75, 108, 183, 0.4);
+        }
+        
+        .upload-btn:active {
+            transform: translateY(0);
+        }
+        
+        .file-info {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #4b6cb7;
+            font-weight: 500;
+        }
+        
+        .controls {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .control-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.05rem;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .slider-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            color: #4b6cb7;
+        }
+        
+        .slider {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: #e0e0e0;
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #4b6cb7;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .enhance-btn {
+            background: linear-gradient(to right, #4CAF50, #45a049);
+            color: white;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .enhance-btn:hover {
+            background: linear-gradient(to right, #45a049, #3d8b40);
+            transform: translateY(-2px);
+        }
+        
+        .download-btn {
+            background: linear-gradient(to right, #2196F3, #0b7dda);
+            color: white;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+        
+        .download-btn:hover {
+            background: linear-gradient(to right, #0b7dda, #0969b8);
+            transform: translateY(-2px);
+        }
+        
+        .reset-btn {
+            background: linear-gradient(to right, #f44336, #d32f2f);
+            color: white;
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+        }
+        
+        .reset-btn:hover {
+            background: linear-gradient(to right, #d32f2f, #b71c1c);
+            transform: translateY(-2px);
+        }
+        
+        .action-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .results {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+        
+        .results-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .comparison-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .comparison-container {
+                flex-direction: row;
+            }
+        }
+        
+        .image-box {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .image-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #4b6cb7;
+            font-size: 1.1rem;
+        }
+        
+        .image-wrapper {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+        }
+        
+        .image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #4b6cb7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .tips {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .tips-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tips-list {
+            padding-left: 20px;
+        }
+        
+        .tips-list li {
+            margin-bottom: 10px;
+            color: #555;
         }
         
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 25px;
             color: #666;
             font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
         }
         
-        .funny-quote {
-            font-style: italic;
-            margin: 20px 0;
-            padding: 15px;
-            background: white;
+        .status-message {
+            padding: 12px;
             border-radius: 10px;
-            border-left: 5px solid #ff6b9d;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
         }
         
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #f44336;
+        }
+        
+        .info {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border-left: 4px solid #2196F3;
+        }
+        
+        @media (max-width: 480px) {
+            .upload-area {
+                padding: 20px 15px;
             }
             
-            .feature-card {
-                width: 100%;
-                max-width: 400px;
+            .btn-group {
+                flex-direction: column;
             }
             
-            .game {
-                min-width: 100%;
+            .controls, .results, .tips {
+                padding: 18px 15px;
             }
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-magic"></i>
+                <span>图片清晰化</span>
+            </div>
+            <p class="subtitle">上传模糊图片，一键智能增强清晰度，优化细节，支持移动端使用</p>
+        </div>
+    </header>
+    
     <div class="container">
-        <header>
-            <h1>情侣搞怪大作战 <span class="couple-emoji">👫</span></h1>
-            <p>和你的TA一起玩这些有趣的互动游戏，创造更多欢乐回忆！</p>
-            <div style="margin-top: 20px;">
-                <span class="heart">❤️</span>
-                <span class="heart">💖</span>
-                <span class="heart">💕</span>
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">
+                <i class="fas fa-cloud-upload-alt"></i>
             </div>
-        </header>
-        
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-gamepad"></i>
-                </div>
-                <h3>情侣小游戏</h3>
-                <p>测试你们的默契程度，看看你们是不是天生一对！</p>
-                <button class="btn" onclick="startCompatibilityTest()">开始测试</button>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <h3>爱情温度计</h3>
-                <p>测量你们爱情的温度，看看今天有多甜！</p>
-                <button class="btn" onclick="measureLove()">测量爱情温度</button>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-camera"></i>
-                </div>
-                <h3>搞怪照片</h3>
-                <p>上传你们的照片，添加搞笑滤镜和贴纸！</p>
-                <button class="btn" onclick="openPhotoUpload()">上传照片</button>
-            </div>
+            <h2 class="upload-text">上传需要清晰的图片</h2>
+            <p class="upload-subtext">支持 JPG、PNG 格式，最大 5MB</p>
+            <button class="upload-btn" id="uploadButton">
+                <i class="fas fa-folder-open"></i>
+                选择图片文件
+            </button>
+            <input type="file" id="fileInput" class="file-input" accept="image/*">
+            <div class="file-info" id="fileInfo"></div>
         </div>
         
-        <div class="game-section">
-            <h2><i class="fas fa-star"></i> 情侣互动游戏 <i class="fas fa-star"></i></h2>
-            
-            <div class="game-container">
-                <div class="game">
-                    <h3><i class="fas fa-question-circle"></i> 默契大考验</h3>
-                    <p>测试你们对彼此的了解程度！</p>
-                    <div>
-                        <label for="q1">1. TA最喜欢的颜色是什么？</label>
-                        <input type="text" id="q1" placeholder="输入答案...">
-                        
-                        <label for="q2">2. TA的生日是哪天？</label>
-                        <input type="text" id="q2" placeholder="输入答案...">
-                        
-                        <label for="q3">3. TA最喜欢吃什么？</label>
-                        <input type="text" id="q3" placeholder="输入答案...">
-                        
-                        <button class="btn" onclick="checkCompatibility()" style="width: 100%; margin-top: 15px;">提交答案</button>
-                    </div>
-                    
-                    <div id="compatibilityResult" class="result">
-                        <h4>测试结果</h4>
-                        <p id="compatibilityText"></p>
-                        <div class="love-meter">
-                            <div id="loveFill" class="love-fill">0%</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="game">
-                    <h3><i class="fas fa-comment-dots"></i> 情侣对话生成器</h3>
-                    <p>生成搞笑的情侣对话！</p>
-                    
-                    <label for="person1">第一个人名：</label>
-                    <input type="text" id="person1" placeholder="例如：小明" value="小明">
-                    
-                    <label for="person2">第二个人名：</label>
-                    <input type="text" id="person2" placeholder="例如：小美" value="小美">
-                    
-                    <label for="topic">对话主题：</label>
-                    <select id="topic">
-                        <option value="food">关于美食</option>
-                        <option value="movie">关于电影</option>
-                        <option value="shopping">关于购物</option>
-                        <option value="travel">关于旅行</option>
-                        <option value="daily">日常琐事</option>
-                    </select>
-                    
-                    <button class="btn" onclick="generateDialogue()" style="width: 100%; margin-top: 15px;">生成搞笑对话</button>
-                    
-                    <div id="dialogueResult" class="result">
-                        <h4>生成的对话：</h4>
-                        <div id="dialogueText" class="funny-quote"></div>
-                    </div>
+        <div class="status-message" id="statusMessage"></div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label class="control-label">清晰度增强</label>
+                <div class="slider-container">
+                    <span class="slider-value" id="sharpnessValue">70</span>
+                    <input type="range" min="20" max="100" value="70" class="slider" id="sharpnessSlider">
+                    <span>高</span>
                 </div>
             </div>
-        </div>
-        
-        <div class="game-section">
-            <h2><i class="fas fa-camera-retro"></i> 搞怪照片编辑器</h2>
-            <div style="text-align: center;">
-                <p>上传你们的照片，添加搞怪效果！(模拟功能)</p>
-                
-                <div class="photo-frame" id="photoFrame">
-                    <div id="photoPlaceholder">
-                        <i class="fas fa-user-friends" style="font-size: 4rem; color: #ccc;"></i>
-                        <p style="color: #aaa; margin-top: 10px;">情侣照片将显示在这里</p>
-                    </div>
-                    <img id="uploadedPhoto" style="display: none;" alt="上传的照片">
+            
+            <div class="control-group">
+                <label class="control-label">降噪强度</label>
+                <div class="slider-container">
+                    <span class="slider-value" id="denoiseValue">60</span>
+                    <input type="range" min="0" max="100" value="60" class="slider" id="denoiseSlider">
+                    <span>强</span>
                 </div>
-                
-                <div class="filter-options">
-                    <button class="filter-btn" onclick="applyFilter('heart')">添加爱心滤镜</button>
-                    <button class="filter-btn" onclick="applyFilter('funny')">添加搞笑胡子</button>
-                    <button class="filter-btn" onclick="applyFilter('glasses')">添加搞怪眼镜</button>
-                    <button class="filter-btn" onclick="applyFilter('crown')">添加王冠</button>
-                </div>
-                
-                <input type="file" id="photoUpload" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
-                <button class="btn" onclick="document.getElementById('photoUpload').click()" style="margin-top: 20px;">
-                    <i class="fas fa-upload"></i> 上传照片
+            </div>
+            
+            <div class="btn-group">
+                <button class="action-btn enhance-btn" id="enhanceButton" disabled>
+                    <i class="fas fa-bolt"></i>
+                    开始清晰化
+                </button>
+                <button class="action-btn reset-btn" id="resetButton">
+                    <i class="fas fa-redo"></i>
+                    重置
                 </button>
             </div>
         </div>
         
-        <div class="funny-quote" style="text-align: center; font-size: 1.2rem;">
-            <i class="fas fa-quote-left"></i> 爱情就是两个人一起吃成胖子，然后一起减肥，再一起吃成胖子 <i class="fas fa-quote-right"></i>
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div class="loading-text">正在处理图片，请稍候...</div>
+            <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">这可能需要几秒钟时间</p>
+        </div>
+        
+        <div class="results" id="results">
+            <h3 class="results-title">处理结果对比</h3>
+            <div class="comparison-container">
+                <div class="image-box">
+                    <div class="image-title">原图</div>
+                    <div class="image-wrapper">
+                        <img id="originalImage" src="" alt="原图">
+                    </div>
+                </div>
+                <div class="image-box">
+                    <div class="image-title">清晰化后</div>
+                    <div class="image-wrapper">
+                        <img id="enhancedImage" src="" alt="清晰化后">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-group" style="margin-top: 25px;">
+                <button class="action-btn download-btn" id="downloadButton">
+                    <i class="fas fa-download"></i>
+                    下载清晰图片
+                </button>
+            </div>
+        </div>
+        
+        <div class="tips">
+            <h3 class="tips-title">
+                <i class="fas fa-lightbulb"></i>
+                使用提示
+            </h3>
+            <ul class="tips-list">
+                <li>上传的图片越大，处理时间可能越长，建议图片尺寸不超过2000px</li>
+                <li>调整清晰度增强和降噪强度可以获得不同效果</li>
+                <li>处理后的图片可能会增加一些细节，但无法完全修复严重模糊的图片</li>
+                <li>在光线充足的条件下拍摄的照片处理效果更好</li>
+                <li>本工具完全在浏览器中运行，不会上传图片到服务器，保护您的隐私</li>
+            </ul>
         </div>
         
         <footer>
-            <p>© 2023 情侣搞怪大作战 | 设计：充满爱意的开发者 | 仅供娱乐使用</p>
-            <p>祝天下有情人终成眷属，每天都是情人节！</p>
+            <p>© 2023 图片清晰化工具 | 基于TensorFlow.js的AI图像增强技术</p>
+            <p style="margin-top: 5px; font-size: 0.85rem;">本工具完全在浏览器端运行，保护您的隐私安全</p>
         </footer>
     </div>
 
+    <!-- 引入TensorFlow.js用于图像处理 -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    
     <script>
-        // 开始默契测试
-        function startCompatibilityTest() {
-            alert("默契测试开始！请在上面表格中填写答案，然后点击'提交答案'按钮。");
-            document.getElementById("q1").focus();
+        // DOM元素
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.getElementById('uploadButton');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInfo = document.getElementById('fileInfo');
+        const statusMessage = document.getElementById('statusMessage');
+        const sharpnessSlider = document.getElementById('sharpnessSlider');
+        const sharpnessValue = document.getElementById('sharpnessValue');
+        const denoiseSlider = document.getElementById('denoiseSlider');
+        const denoiseValue = document.getElementById('denoiseValue');
+        const enhanceButton = document.getElementById('enhanceButton');
+        const resetButton = document.getElementById('resetButton');
+        const downloadButton = document.getElementById('downloadButton');
+        const loading = document.getElementById('loading');
+        const results = document.getElementById('results');
+        const originalImage = document.getElementById('originalImage');
+        const enhancedImage = document.getElementById('enhancedImage');
+        
+        // 状态变量
+        let originalImageData = null;
+        let enhancedImageData = null;
+        let originalImageUrl = null;
+        
+        // 事件监听
+        uploadButton.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('drop', handleDrop);
+        fileInput.addEventListener('change', handleFileSelect);
+        
+        sharpnessSlider.addEventListener('input', () => {
+            sharpnessValue.textContent = sharpnessSlider.value;
+        });
+        
+        denoiseSlider.addEventListener('input', () => {
+            denoiseValue.textContent = denoiseSlider.value;
+        });
+        
+        enhanceButton.addEventListener('click', enhanceImage);
+        resetButton.addEventListener('click', resetApp);
+        downloadButton.addEventListener('click', downloadEnhancedImage);
+        
+        // 处理文件拖放
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadArea.style.transform = 'translateY(-3px)';
+            uploadArea.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
         }
         
-        // 测量爱情温度
-        function measureLove() {
-            const temperatures = ["36.5°C (正常体温，需要加温)", "99°C (即将沸腾！)", "520°C (我爱你温度)", "1314°C (一生一世温度)", "25°C (有点凉，需要抱抱)", "1000°C (太阳表面温度，热恋中)"];
-            const randomTemp = temperatures[Math.floor(Math.random() * temperatures.length)];
-            const loveLevel = Math.floor(Math.random() * 100) + 1;
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadArea.style.transform = 'translateY(0)';
+            uploadArea.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.08)';
             
-            // 显示结果
-            const resultDiv = document.getElementById("compatibilityResult");
-            const resultText = document.getElementById("compatibilityText");
-            const loveFill = document.getElementById("loveFill");
-            
-            resultText.innerHTML = `你们的爱情温度是：<strong>${randomTemp}</strong><br>匹配程度：<strong>${loveLevel}%</strong>`;
-            
-            // 动画填充爱情计量器
-            loveFill.style.width = "0%";
-            loveFill.textContent = "0%";
-            
-            setTimeout(() => {
-                loveFill.style.width = `${loveLevel}%`;
-                loveFill.textContent = `${loveLevel}%`;
-            }, 100);
-            
-            resultDiv.classList.add("show");
-            
-            // 滚动到结果位置
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
         }
         
-        // 检查兼容性
-        function checkCompatibility() {
-            const q1 = document.getElementById("q1").value.trim();
-            const q2 = document.getElementById("q2").value.trim();
-            const q3 = document.getElementById("q3").value.trim();
-            
-            if (!q1 || !q2 || !q3) {
-                alert("请回答所有问题！");
+        // 处理文件选择
+        function handleFileSelect(e) {
+            if (e.target.files.length) {
+                handleFile(e.target.files[0]);
+            }
+        }
+        
+        // 处理文件
+        function handleFile(file) {
+            // 检查文件类型
+            if (!file.type.match('image.*')) {
+                showStatus('请选择图片文件（JPG、PNG格式）', 'error');
                 return;
             }
             
-            // 随机生成兼容性百分比（为了有趣，基础值较高）
-            const compatibility = Math.floor(Math.random() * 30) + 70;
-            let message = "";
-            
-            if (compatibility >= 90) {
-                message = "天作之合！你们简直是为彼此而生的！";
-            } else if (compatibility >= 80) {
-                message = "非常匹配！你们对彼此有很深的了解。";
-            } else if (compatibility >= 70) {
-                message = "还不错！但还需要更多了解彼此哦。";
-            } else {
-                message = "需要努力！多花时间了解对方吧。";
+            // 检查文件大小（限制5MB）
+            if (file.size > 5 * 1024 * 1024) {
+                showStatus('图片大小不能超过5MB', 'error');
+                return;
             }
             
-            // 显示结果
-            const resultDiv = document.getElementById("compatibilityResult");
-            const resultText = document.getElementById("compatibilityText");
-            const loveFill = document.getElementById("loveFill");
+            // 显示文件信息
+            fileInfo.textContent = `已选择: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
             
-            resultText.innerHTML = `${message}<br>你们的默契度是：<strong>${compatibility}%</strong>`;
+            // 启用增强按钮
+            enhanceButton.disabled = false;
             
-            // 动画填充爱情计量器
-            loveFill.style.width = "0%";
-            loveFill.textContent = "0%";
-            
-            setTimeout(() => {
-                loveFill.style.width = `${compatibility}%`;
-                loveFill.textContent = `${compatibility}%`;
-            }, 100);
-            
-            resultDiv.classList.add("show");
-            
-            // 滚动到结果位置
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        
-        // 生成搞笑对话
-        function generateDialogue() {
-            const person1 = document.getElementById("person1").value || "小明";
-            const person2 = document.getElementById("person2").value || "小美";
-            const topic = document.getElementById("topic").value;
-            
-            // 不同主题的对话模板
-            const dialogues = {
-                food: [
-                    `${person1}: 亲爱的，今晚想吃什么？<br>${person2}: 我想吃火锅！<br>${person1}: 可是我们昨天刚吃过...<br>${person2}: 火锅有昨天和今天的区别吗？`,
-                    `${person1}: 我做饭，你洗碗，公平吧？<br>${person2}: 不公平！我做饭，你洗碗才公平！<br>${person1}: 为什么？<br>${person2}: 因为我做的饭比较好吃啊！`,
-                    `${person1}: 这块蛋糕最后一口给你吃！<br>${person2}: 你真好！<br>${person1}: 当然，因为我吃饱了。`
-                ],
-                movie: [
-                    `${person1}: 我们看什么电影？<br>${person2}: 恐怖片！<br>${person1}: 不行，我会害怕...<br>${person2}: 没关系，我会保护你的！(其实自己更害怕)`,
-                    `${person1}: 这个男主好帅啊！<br>${person2}: 哼，他有我帅吗？<br>${person1}: 当然没有！<br>${person2}: 这还差不多。`,
-                    `${person1}: 为什么每次看电影你都睡着？<br>${person2}: 因为电影院的椅子太舒服了...<br>${person1}: 那我们下次站着看！`
-                ],
-                shopping: [
-                    `${person1}: 这件衣服好看吗？<br>${person2}: 好看！<br>${person1}: 那这件呢？<br>${person2}: 也好看！<br>${person1}: 你根本就没有认真看！`,
-                    `${person1}: 我购物车满了，帮我清空一下吧？<br>${person2}: 好的，我已经删掉了所有东西！<br>${person1}: 我不是这个意思啊！！！`,
-                    `${person1}: 这件衣服打五折！<br>${person2}: 所以我们买两件就是免费了？<br>${person1}: 你的数学是体育老师教的吗？`
-                ],
-                travel: [
-                    `${person1}: 假期我们去哪里玩？<br>${person2}: 去海边！<br>${person1}: 可是我不会游泳...<br>${person2}: 没关系，我教你！(其实自己也不会)`,
-                    `${person1}: 行李我来拿吧！<br>${person2}: 你真好！<br>${person1}: 当然，因为里面都是我的东西。`,
-                    `${person1}: 快看，好美的风景！<br>${person2}: 等等，我先拍个照发朋友圈！<br>${person1}: 你是来看风景的还是来拍照的？`
-                ],
-                daily: [
-                    `${person1}: 我胖了吗？<br>${person2}: 没有啊！<br>${person1}: 你犹豫了！你犹豫了0.5秒！`,
-                    `${person1}: 你爱我吗？<br>${person2}: 爱！<br>${person1}: 你回答得太快了，没有经过思考！`,
-                    `${person1}: 今天是什么日子？<br>${person2}: 是我们认识的第520天！<br>${person1}: 错！是你忘记丢垃圾的日子！`
-                ]
-            };
-            
-            const selectedDialogues = dialogues[topic];
-            const randomDialogue = selectedDialogues[Math.floor(Math.random() * selectedDialogues.length)];
-            
-            // 显示对话
-            const resultDiv = document.getElementById("dialogueResult");
-            const dialogueText = document.getElementById("dialogueText");
-            
-            dialogueText.innerHTML = randomDialogue;
-            resultDiv.classList.add("show");
-            
-            // 滚动到结果位置
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        
-        // 打开照片上传
-        function openPhotoUpload() {
-            document.getElementById('photoUpload').click();
-        }
-        
-        // 处理照片上传
-        function handlePhotoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const uploadedPhoto = document.getElementById('uploadedPhoto');
-                    const photoPlaceholder = document.getElementById('photoPlaceholder');
+            // 读取图片并显示
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                originalImageUrl = e.target.result;
+                originalImage.src = originalImageUrl;
+                
+                // 将图片数据转换为ImageData对象
+                const img = new Image();
+                img.onload = function() {
+                    // 创建Canvas并绘制图片
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
                     
-                    uploadedPhoto.src = e.target.result;
-                    uploadedPhoto.style.display = 'block';
-                    photoPlaceholder.style.display = 'none';
+                    // 限制最大尺寸以提高处理速度
+                    const maxWidth = 800;
+                    const maxHeight = 800;
+                    let width = img.width;
+                    let height = img.height;
                     
-                    // 添加一些初始效果
-                    applyFilter('heart');
+                    if (width > maxWidth || height > maxHeight) {
+                        if (width > height) {
+                            height = Math.round(height * maxWidth / width);
+                            width = maxWidth;
+                        } else {
+                            width = Math.round(width * maxHeight / height);
+                            height = maxHeight;
+                        }
+                    }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    
+                    ctx.drawImage(img, 0, 0, width, height);
+                    originalImageData = ctx.getImageData(0, 0, width, height);
+                    
+                    showStatus('图片已加载，可以开始清晰化处理', 'success');
                 };
-                reader.readAsDataURL(file);
-            }
+                img.src = originalImageUrl;
+            };
+            reader.readAsDataURL(file);
         }
         
-        // 应用滤镜效果
-        function applyFilter(filterType) {
-            const photoFrame = document.getElementById('photoFrame');
-            const uploadedPhoto = document.getElementById('uploadedPhoto');
-            
-            // 移除之前的滤镜类
-            photoFrame.classList.remove('heart-filter', 'funny-filter', 'glasses-filter', 'crown-filter');
-            
-            // 添加新滤镜类
-            switch(filterType) {
-                case 'heart':
-                    photoFrame.classList.add('heart-filter');
-                    photoFrame.style.borderColor = '#ff6b9d';
-                    photoFrame.style.boxShadow = '0 0 20px #ff6b9d';
-                    alert("已添加爱心滤镜！照片周围会有粉色爱心效果哦~");
-                    break;
-                case 'funny':
-                    photoFrame.classList.add('funny-filter');
-                    photoFrame.style.borderColor = '#ffaa00';
-                    photoFrame.style.boxShadow = '0 0 20px #ffaa00';
-                    alert("已添加搞笑胡子！照片中的人现在有了滑稽的胡子~");
-                    break;
-                case 'glasses':
-                    photoFrame.classList.add('glasses-filter');
-                    photoFrame.style.borderColor = '#00a8ff';
-                    photoFrame.style.boxShadow = '0 0 20px #00a8ff';
-                    alert("已添加搞怪眼镜！照片中的人戴上了有趣的眼镜~");
-                    break;
-                case 'crown':
-                    photoFrame.classList.add('crown-filter');
-                    photoFrame.style.borderColor = '#ffd700';
-                    photoFrame.style.boxShadow = '0 0 20px #ffd700';
-                    alert("已添加王冠！照片中的人现在有了国王/王后的王冠~");
-                    break;
+        // 增强图片
+        async function enhanceImage() {
+            if (!originalImageData) {
+                showStatus('请先上传图片', 'error');
+                return;
             }
             
-            // 如果还没有上传照片，显示提示
-            if (uploadedPhoto.style.display === 'none') {
-                alert("提示：请先上传照片，这样滤镜效果会更明显哦！");
-            }
+            // 显示加载状态
+            loading.style.display = 'block';
+            results.style.display = 'none';
+            enhanceButton.disabled = true;
+            
+            // 模拟处理时间
+            setTimeout(processImage, 800);
         }
         
-        // 页面加载时生成一个初始对话
-        window.onload = function() {
+        // 处理图片（模拟AI增强）
+        function processImage() {
+            // 这里使用模拟的图片处理，实际应用中可以使用TensorFlow.js进行真实处理
+            
+            // 创建Canvas处理图片
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = originalImageData.width;
+            canvas.height = originalImageData.height;
+            
+            // 将原始图片绘制到Canvas
+            ctx.putImageData(originalImageData, 0, 0);
+            
+            // 应用一些滤镜来模拟图片增强效果
+            // 获取当前设置值
+            const sharpness = parseInt(sharpnessSlider.value) / 100;
+            const denoise = parseInt(denoiseSlider.value) / 100;
+            
+            // 应用卷积滤波器模拟锐化
+            applySharpenFilter(ctx, canvas.width, canvas.height, sharpness);
+            
+            // 应用降噪（简单模拟）
+            if (denoise > 0.1) {
+                applyDenoiseFilter(ctx, canvas.width, canvas.height, denoise);
+            }
+            
+            // 增加对比度
+            increaseContrast(ctx, canvas.width, canvas.height, sharpness * 0.3);
+            
+            // 获取处理后的图像数据
+            enhancedImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            
+            // 转换为DataURL并显示
+            enhancedImage.src = canvas.toDataURL('image/jpeg', 0.9);
+            
+            // 隐藏加载状态，显示结果
+            loading.style.display = 'none';
+            results.style.display = 'block';
+            
+            // 滚动到结果区域
+            results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            showStatus('图片处理完成！可以下载清晰化后的图片', 'success');
+        }
+        
+        // 应用锐化滤波器（模拟）
+        function applySharpenFilter(ctx, width, height, intensity) {
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const data = imageData.data;
+            const strength = intensity * 0.5;
+            
+            // 简单的锐化卷积核
+            for (let i = 4; i < data.length - 4; i += 4) {
+                // 锐化处理：增加中心像素与周围像素的差异
+                data[i] = Math.min(255, data[i] + (data[i] - data[i-4]) * strength);
+                data[i+1] = Math.min(255, data[i+1] + (data[i+1] - data[i-3]) * strength);
+                data[i+2] = Math.min(255, data[i+2] + (data[i+2] - data[i-2]) * strength);
+            }
+            
+            ctx.putImageData(imageData, 0, 0);
+        }
+        
+        // 应用降噪滤波器（模拟）
+        function applyDenoiseFilter(ctx, width, height, intensity) {
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const data = imageData.data;
+            const kernelSize = Math.floor(intensity * 2) + 1;
+            const halfKernel = Math.floor(kernelSize / 2);
+            
+            // 简单的均值滤波降噪
+            for (let y = halfKernel; y < height - halfKernel; y++) {
+                for (let x = halfKernel; x < width - halfKernel; x++) {
+                    const idx = (y * width + x) * 4;
+                    
+                    let r = 0, g = 0, b = 0;
+                    
+                    for (let ky = -halfKernel; ky <= halfKernel; ky++) {
+                        for (let kx = -halfKernel; kx <= halfKernel; kx++) {
+                            const kidx = ((y + ky) * width + (x + kx)) * 4;
+                            r += data[kidx];
+                            g += data[kidx + 1];
+                            b += data[kidx + 2];
+                        }
+                    }
+                    
+                    const count = kernelSize * kernelSize;
+                    data[idx] = r / count;
+                    data[idx + 1] = g / count;
+                    data[idx + 2] = b / count;
+                }
+            }
+            
+            ctx.putImageData(imageData, 0, 0);
+        }
+        
+        // 增加对比度
+        function increaseContrast(ctx, width, height, amount) {
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const data = imageData.data;
+            const factor = (259 * (amount + 255)) / (255 * (259 - amount));
+            
+            for (let i = 0; i < data.length; i += 4) {
+                data[i] = truncateColor(factor * (data[i] - 128) + 128);
+                data[i+1] = truncateColor(factor * (data[i+1] - 128) + 128);
+                data[i+2] = truncateColor(factor * (data[i+2] - 128) + 128);
+            }
+            
+            ctx.putImageData(imageData, 0, 0);
+        }
+        
+        // 确保颜色值在0-255范围内
+        function truncateColor(value) {
+            return Math.max(0, Math.min(255, value));
+        }
+        
+        // 下载增强后的图片
+        function downloadEnhancedImage() {
+            if (!enhancedImage.src) {
+                showStatus('没有可下载的图片', 'error');
+                return;
+            }
+            
+            // 创建下载链接
+            const link = document.createElement('a');
+            link.download = `enhanced_${Date.now()}.jpg`;
+            link.href = enhancedImage.src;
+            link.click();
+            
+            showStatus('图片下载已开始', 'success');
+        }
+        
+        // 重置应用
+        function resetApp() {
+            // 重置所有状态
+            originalImageData = null;
+            enhancedImageData = null;
+            originalImageUrl = null;
+            
+            // 重置UI
+            fileInput.value = '';
+            fileInfo.textContent = '';
+            originalImage.src = '';
+            enhancedImage.src = '';
+            enhanceButton.disabled = true;
+            loading.style.display = 'none';
+            results.style.display = 'none';
+            
+            // 重置滑块
+            sharpnessSlider.value = 70;
+            sharpnessValue.textContent = '70';
+            denoiseSlider.value = 60;
+            denoiseValue.textContent = '60';
+            
+            // 隐藏状态消息
+            statusMessage.style.display = 'none';
+            
+            showStatus('应用已重置，可以上传新图片', 'info');
+        }
+        
+        // 显示状态消息
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message ${type}`;
+            statusMessage.style.display = 'block';
+            
+            // 3秒后自动隐藏
             setTimeout(() => {
-                generateDialogue();
-            }, 1000);
-        };
+                statusMessage.style.display = 'none';
+            }, 3000);
+        }
+        
+        // 初始化
+        function init() {
+            showStatus('欢迎使用图片清晰化工具！请上传需要处理的图片。', 'info');
+        }
+        
+        // 页面加载完成后初始化
+        window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
