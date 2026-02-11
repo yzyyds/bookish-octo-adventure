@@ -3,74 +3,643 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeepSeek AI助手</title>
-    <link rel="stylesheet" href="style.css">
+    <title>情侣搞怪大作战</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffd6e7 0%, #c2f0ff 100%);
+            color: #333;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(to right, #ff6b9d, #6a5af9);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .couple-emoji {
+            font-size: 2.5rem;
+            margin: 0 10px;
+        }
+        
+        .heart {
+            color: #ff4757;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            width: 280px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ff6b9d, #6a5af9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ff6b9d;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(to right, #ff6b9d, #6a5af9);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .game-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-section h2 {
+            text-align: center;
+            color: #ff6b9d;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+        
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .game {
+            background: #f9f9ff;
+            border-radius: 15px;
+            padding: 25px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            border: 2px dashed #ff6b9d;
+        }
+        
+        .game h3 {
+            color: #6a5af9;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .game h3 i {
+            color: #ff6b9d;
+        }
+        
+        .game input, .game textarea, .game select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .game input:focus, .game textarea:focus, .game select:focus {
+            border-color: #ff6b9d;
+            outline: none;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 10px;
+            border-left: 5px solid #6a5af9;
+            display: none;
+        }
+        
+        .result.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .love-meter {
+            width: 100%;
+            height: 30px;
+            background: #eee;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .love-fill {
+            height: 100%;
+            background: linear-gradient(to right, #ff6b9d, #6a5af9);
+            border-radius: 15px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 10px solid #ff6b9d;
+            border-radius: 10px;
+            background: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .photo-frame img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            background: #6a5af9;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover {
+            background: #ff6b9d;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .funny-quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border-left: 5px solid #ff6b9d;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .feature-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .game {
+                min-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-                <i class="fas fa-robot"></i>
-                <h1>DeepSeek AI助手</h1>
+            <h1>情侣搞怪大作战 <span class="couple-emoji">👫</span></h1>
+            <p>和你的TA一起玩这些有趣的互动游戏，创造更多欢乐回忆！</p>
+            <div style="margin-top: 20px;">
+                <span class="heart">❤️</span>
+                <span class="heart">💖</span>
+                <span class="heart">💕</span>
             </div>
-            <div class="api-key-input">
-                <input type="password" id="apiKey" placeholder="请输入你的DeepSeek API密钥">
-                <button id="saveKey">保存</button>
-                <button id="clearKey">清除</button>
-            </div>
-            <p class="subtitle">基于DeepSeek API的智能对话助手</p>
         </header>
-
-        <main>
-            <div class="chat-container">
-                <div class="messages" id="messages">
-                    <!-- 消息会动态添加到这里 -->
-                    <div class="message system">
-                        <div class="avatar"><i class="fas fa-info-circle"></i></div>
-                        <div class="content">
-                            你好！我是DeepSeek AI助手。请先输入你的API密钥，然后开始对话吧！
-                            <br><small>API密钥仅保存在本地浏览器中，不会上传到任何服务器</small>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>情侣小游戏</h3>
+                <p>测试你们的默契程度，看看你们是不是天生一对！</p>
+                <button class="btn" onclick="startCompatibilityTest()">开始测试</button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>爱情温度计</h3>
+                <p>测量你们爱情的温度，看看今天有多甜！</p>
+                <button class="btn" onclick="measureLove()">测量爱情温度</button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>搞怪照片</h3>
+                <p>上传你们的照片，添加搞笑滤镜和贴纸！</p>
+                <button class="btn" onclick="openPhotoUpload()">上传照片</button>
+            </div>
+        </div>
+        
+        <div class="game-section">
+            <h2><i class="fas fa-star"></i> 情侣互动游戏 <i class="fas fa-star"></i></h2>
+            
+            <div class="game-container">
+                <div class="game">
+                    <h3><i class="fas fa-question-circle"></i> 默契大考验</h3>
+                    <p>测试你们对彼此的了解程度！</p>
+                    <div>
+                        <label for="q1">1. TA最喜欢的颜色是什么？</label>
+                        <input type="text" id="q1" placeholder="输入答案...">
+                        
+                        <label for="q2">2. TA的生日是哪天？</label>
+                        <input type="text" id="q2" placeholder="输入答案...">
+                        
+                        <label for="q3">3. TA最喜欢吃什么？</label>
+                        <input type="text" id="q3" placeholder="输入答案...">
+                        
+                        <button class="btn" onclick="checkCompatibility()" style="width: 100%; margin-top: 15px;">提交答案</button>
+                    </div>
+                    
+                    <div id="compatibilityResult" class="result">
+                        <h4>测试结果</h4>
+                        <p id="compatibilityText"></p>
+                        <div class="love-meter">
+                            <div id="loveFill" class="love-fill">0%</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="input-area">
-                    <div class="input-container">
-                        <textarea 
-                            id="messageInput" 
-                            placeholder="输入你的消息... (Shift+Enter换行，Enter发送)"
-                            rows="1"
-                        ></textarea>
-                        <div class="button-group">
-                            <button id="sendButton" class="send-btn">
-                                <i class="fas fa-paper-plane"></i> 发送
-                            </button>
-                            <button id="clearChat" class="clear-btn">
-                                <i class="fas fa-trash"></i> 清空
-                            </button>
-                        </div>
-                    </div>
-                    <div class="model-info">
-                        <span>当前模型: DeepSeek最新版本</span>
-                        <button id="newChat" class="new-chat-btn">
-                            <i class="fas fa-plus"></i> 新对话
-                        </button>
+                <div class="game">
+                    <h3><i class="fas fa-comment-dots"></i> 情侣对话生成器</h3>
+                    <p>生成搞笑的情侣对话！</p>
+                    
+                    <label for="person1">第一个人名：</label>
+                    <input type="text" id="person1" placeholder="例如：小明" value="小明">
+                    
+                    <label for="person2">第二个人名：</label>
+                    <input type="text" id="person2" placeholder="例如：小美" value="小美">
+                    
+                    <label for="topic">对话主题：</label>
+                    <select id="topic">
+                        <option value="food">关于美食</option>
+                        <option value="movie">关于电影</option>
+                        <option value="shopping">关于购物</option>
+                        <option value="travel">关于旅行</option>
+                        <option value="daily">日常琐事</option>
+                    </select>
+                    
+                    <button class="btn" onclick="generateDialogue()" style="width: 100%; margin-top: 15px;">生成搞笑对话</button>
+                    
+                    <div id="dialogueResult" class="result">
+                        <h4>生成的对话：</h4>
+                        <div id="dialogueText" class="funny-quote"></div>
                     </div>
                 </div>
             </div>
-        </main>
-
+        </div>
+        
+        <div class="game-section">
+            <h2><i class="fas fa-camera-retro"></i> 搞怪照片编辑器</h2>
+            <div style="text-align: center;">
+                <p>上传你们的照片，添加搞怪效果！(模拟功能)</p>
+                
+                <div class="photo-frame" id="photoFrame">
+                    <div id="photoPlaceholder">
+                        <i class="fas fa-user-friends" style="font-size: 4rem; color: #ccc;"></i>
+                        <p style="color: #aaa; margin-top: 10px;">情侣照片将显示在这里</p>
+                    </div>
+                    <img id="uploadedPhoto" style="display: none;" alt="上传的照片">
+                </div>
+                
+                <div class="filter-options">
+                    <button class="filter-btn" onclick="applyFilter('heart')">添加爱心滤镜</button>
+                    <button class="filter-btn" onclick="applyFilter('funny')">添加搞笑胡子</button>
+                    <button class="filter-btn" onclick="applyFilter('glasses')">添加搞怪眼镜</button>
+                    <button class="filter-btn" onclick="applyFilter('crown')">添加王冠</button>
+                </div>
+                
+                <input type="file" id="photoUpload" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+                <button class="btn" onclick="document.getElementById('photoUpload').click()" style="margin-top: 20px;">
+                    <i class="fas fa-upload"></i> 上传照片
+                </button>
+            </div>
+        </div>
+        
+        <div class="funny-quote" style="text-align: center; font-size: 1.2rem;">
+            <i class="fas fa-quote-left"></i> 爱情就是两个人一起吃成胖子，然后一起减肥，再一起吃成胖子 <i class="fas fa-quote-right"></i>
+        </div>
+        
         <footer>
-            <p>基于DeepSeek API构建 | 仅供学习和演示使用</p>
-            <p class="links">
-                <a href="https://platform.deepseek.com/" target="_blank">获取API密钥</a>
-                |
-                <a href="https://api-docs.deepseek.com/" target="_blank">API文档</a>
-            </p>
+            <p>© 2023 情侣搞怪大作战 | 设计：充满爱意的开发者 | 仅供娱乐使用</p>
+            <p>祝天下有情人终成眷属，每天都是情人节！</p>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // 开始默契测试
+        function startCompatibilityTest() {
+            alert("默契测试开始！请在上面表格中填写答案，然后点击'提交答案'按钮。");
+            document.getElementById("q1").focus();
+        }
+        
+        // 测量爱情温度
+        function measureLove() {
+            const temperatures = ["36.5°C (正常体温，需要加温)", "99°C (即将沸腾！)", "520°C (我爱你温度)", "1314°C (一生一世温度)", "25°C (有点凉，需要抱抱)", "1000°C (太阳表面温度，热恋中)"];
+            const randomTemp = temperatures[Math.floor(Math.random() * temperatures.length)];
+            const loveLevel = Math.floor(Math.random() * 100) + 1;
+            
+            // 显示结果
+            const resultDiv = document.getElementById("compatibilityResult");
+            const resultText = document.getElementById("compatibilityText");
+            const loveFill = document.getElementById("loveFill");
+            
+            resultText.innerHTML = `你们的爱情温度是：<strong>${randomTemp}</strong><br>匹配程度：<strong>${loveLevel}%</strong>`;
+            
+            // 动画填充爱情计量器
+            loveFill.style.width = "0%";
+            loveFill.textContent = "0%";
+            
+            setTimeout(() => {
+                loveFill.style.width = `${loveLevel}%`;
+                loveFill.textContent = `${loveLevel}%`;
+            }, 100);
+            
+            resultDiv.classList.add("show");
+            
+            // 滚动到结果位置
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // 检查兼容性
+        function checkCompatibility() {
+            const q1 = document.getElementById("q1").value.trim();
+            const q2 = document.getElementById("q2").value.trim();
+            const q3 = document.getElementById("q3").value.trim();
+            
+            if (!q1 || !q2 || !q3) {
+                alert("请回答所有问题！");
+                return;
+            }
+            
+            // 随机生成兼容性百分比（为了有趣，基础值较高）
+            const compatibility = Math.floor(Math.random() * 30) + 70;
+            let message = "";
+            
+            if (compatibility >= 90) {
+                message = "天作之合！你们简直是为彼此而生的！";
+            } else if (compatibility >= 80) {
+                message = "非常匹配！你们对彼此有很深的了解。";
+            } else if (compatibility >= 70) {
+                message = "还不错！但还需要更多了解彼此哦。";
+            } else {
+                message = "需要努力！多花时间了解对方吧。";
+            }
+            
+            // 显示结果
+            const resultDiv = document.getElementById("compatibilityResult");
+            const resultText = document.getElementById("compatibilityText");
+            const loveFill = document.getElementById("loveFill");
+            
+            resultText.innerHTML = `${message}<br>你们的默契度是：<strong>${compatibility}%</strong>`;
+            
+            // 动画填充爱情计量器
+            loveFill.style.width = "0%";
+            loveFill.textContent = "0%";
+            
+            setTimeout(() => {
+                loveFill.style.width = `${compatibility}%`;
+                loveFill.textContent = `${compatibility}%`;
+            }, 100);
+            
+            resultDiv.classList.add("show");
+            
+            // 滚动到结果位置
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // 生成搞笑对话
+        function generateDialogue() {
+            const person1 = document.getElementById("person1").value || "小明";
+            const person2 = document.getElementById("person2").value || "小美";
+            const topic = document.getElementById("topic").value;
+            
+            // 不同主题的对话模板
+            const dialogues = {
+                food: [
+                    `${person1}: 亲爱的，今晚想吃什么？<br>${person2}: 我想吃火锅！<br>${person1}: 可是我们昨天刚吃过...<br>${person2}: 火锅有昨天和今天的区别吗？`,
+                    `${person1}: 我做饭，你洗碗，公平吧？<br>${person2}: 不公平！我做饭，你洗碗才公平！<br>${person1}: 为什么？<br>${person2}: 因为我做的饭比较好吃啊！`,
+                    `${person1}: 这块蛋糕最后一口给你吃！<br>${person2}: 你真好！<br>${person1}: 当然，因为我吃饱了。`
+                ],
+                movie: [
+                    `${person1}: 我们看什么电影？<br>${person2}: 恐怖片！<br>${person1}: 不行，我会害怕...<br>${person2}: 没关系，我会保护你的！(其实自己更害怕)`,
+                    `${person1}: 这个男主好帅啊！<br>${person2}: 哼，他有我帅吗？<br>${person1}: 当然没有！<br>${person2}: 这还差不多。`,
+                    `${person1}: 为什么每次看电影你都睡着？<br>${person2}: 因为电影院的椅子太舒服了...<br>${person1}: 那我们下次站着看！`
+                ],
+                shopping: [
+                    `${person1}: 这件衣服好看吗？<br>${person2}: 好看！<br>${person1}: 那这件呢？<br>${person2}: 也好看！<br>${person1}: 你根本就没有认真看！`,
+                    `${person1}: 我购物车满了，帮我清空一下吧？<br>${person2}: 好的，我已经删掉了所有东西！<br>${person1}: 我不是这个意思啊！！！`,
+                    `${person1}: 这件衣服打五折！<br>${person2}: 所以我们买两件就是免费了？<br>${person1}: 你的数学是体育老师教的吗？`
+                ],
+                travel: [
+                    `${person1}: 假期我们去哪里玩？<br>${person2}: 去海边！<br>${person1}: 可是我不会游泳...<br>${person2}: 没关系，我教你！(其实自己也不会)`,
+                    `${person1}: 行李我来拿吧！<br>${person2}: 你真好！<br>${person1}: 当然，因为里面都是我的东西。`,
+                    `${person1}: 快看，好美的风景！<br>${person2}: 等等，我先拍个照发朋友圈！<br>${person1}: 你是来看风景的还是来拍照的？`
+                ],
+                daily: [
+                    `${person1}: 我胖了吗？<br>${person2}: 没有啊！<br>${person1}: 你犹豫了！你犹豫了0.5秒！`,
+                    `${person1}: 你爱我吗？<br>${person2}: 爱！<br>${person1}: 你回答得太快了，没有经过思考！`,
+                    `${person1}: 今天是什么日子？<br>${person2}: 是我们认识的第520天！<br>${person1}: 错！是你忘记丢垃圾的日子！`
+                ]
+            };
+            
+            const selectedDialogues = dialogues[topic];
+            const randomDialogue = selectedDialogues[Math.floor(Math.random() * selectedDialogues.length)];
+            
+            // 显示对话
+            const resultDiv = document.getElementById("dialogueResult");
+            const dialogueText = document.getElementById("dialogueText");
+            
+            dialogueText.innerHTML = randomDialogue;
+            resultDiv.classList.add("show");
+            
+            // 滚动到结果位置
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // 打开照片上传
+        function openPhotoUpload() {
+            document.getElementById('photoUpload').click();
+        }
+        
+        // 处理照片上传
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const uploadedPhoto = document.getElementById('uploadedPhoto');
+                    const photoPlaceholder = document.getElementById('photoPlaceholder');
+                    
+                    uploadedPhoto.src = e.target.result;
+                    uploadedPhoto.style.display = 'block';
+                    photoPlaceholder.style.display = 'none';
+                    
+                    // 添加一些初始效果
+                    applyFilter('heart');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // 应用滤镜效果
+        function applyFilter(filterType) {
+            const photoFrame = document.getElementById('photoFrame');
+            const uploadedPhoto = document.getElementById('uploadedPhoto');
+            
+            // 移除之前的滤镜类
+            photoFrame.classList.remove('heart-filter', 'funny-filter', 'glasses-filter', 'crown-filter');
+            
+            // 添加新滤镜类
+            switch(filterType) {
+                case 'heart':
+                    photoFrame.classList.add('heart-filter');
+                    photoFrame.style.borderColor = '#ff6b9d';
+                    photoFrame.style.boxShadow = '0 0 20px #ff6b9d';
+                    alert("已添加爱心滤镜！照片周围会有粉色爱心效果哦~");
+                    break;
+                case 'funny':
+                    photoFrame.classList.add('funny-filter');
+                    photoFrame.style.borderColor = '#ffaa00';
+                    photoFrame.style.boxShadow = '0 0 20px #ffaa00';
+                    alert("已添加搞笑胡子！照片中的人现在有了滑稽的胡子~");
+                    break;
+                case 'glasses':
+                    photoFrame.classList.add('glasses-filter');
+                    photoFrame.style.borderColor = '#00a8ff';
+                    photoFrame.style.boxShadow = '0 0 20px #00a8ff';
+                    alert("已添加搞怪眼镜！照片中的人戴上了有趣的眼镜~");
+                    break;
+                case 'crown':
+                    photoFrame.classList.add('crown-filter');
+                    photoFrame.style.borderColor = '#ffd700';
+                    photoFrame.style.boxShadow = '0 0 20px #ffd700';
+                    alert("已添加王冠！照片中的人现在有了国王/王后的王冠~");
+                    break;
+            }
+            
+            // 如果还没有上传照片，显示提示
+            if (uploadedPhoto.style.display === 'none') {
+                alert("提示：请先上传照片，这样滤镜效果会更明显哦！");
+            }
+        }
+        
+        // 页面加载时生成一个初始对话
+        window.onload = function() {
+            setTimeout(() => {
+                generateDialogue();
+            }, 1000);
+        };
+    </script>
 </body>
 </html>
