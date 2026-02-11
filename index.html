@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek AI助手</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>DeepSeek AI助手</h1>
+            </div>
+            <div class="api-key-input">
+                <input type="password" id="apiKey" placeholder="请输入你的DeepSeek API密钥">
+                <button id="saveKey">保存</button>
+                <button id="clearKey">清除</button>
+            </div>
+            <p class="subtitle">基于DeepSeek API的智能对话助手</p>
+        </header>
+
+        <main>
+            <div class="chat-container">
+                <div class="messages" id="messages">
+                    <!-- 消息会动态添加到这里 -->
+                    <div class="message system">
+                        <div class="avatar"><i class="fas fa-info-circle"></i></div>
+                        <div class="content">
+                            你好！我是DeepSeek AI助手。请先输入你的API密钥，然后开始对话吧！
+                            <br><small>API密钥仅保存在本地浏览器中，不会上传到任何服务器</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-area">
+                    <div class="input-container">
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="输入你的消息... (Shift+Enter换行，Enter发送)"
+                            rows="1"
+                        ></textarea>
+                        <div class="button-group">
+                            <button id="sendButton" class="send-btn">
+                                <i class="fas fa-paper-plane"></i> 发送
+                            </button>
+                            <button id="clearChat" class="clear-btn">
+                                <i class="fas fa-trash"></i> 清空
+                            </button>
+                        </div>
+                    </div>
+                    <div class="model-info">
+                        <span>当前模型: DeepSeek最新版本</span>
+                        <button id="newChat" class="new-chat-btn">
+                            <i class="fas fa-plus"></i> 新对话
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>基于DeepSeek API构建 | 仅供学习和演示使用</p>
+            <p class="links">
+                <a href="https://platform.deepseek.com/" target="_blank">获取API密钥</a>
+                |
+                <a href="https://api-docs.deepseek.com/" target="_blank">API文档</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
